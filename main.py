@@ -100,11 +100,11 @@ def channelPointsRunner():
 
 
         liveRes = GQL_Request("", query, {}, 1, "")
-
-        for i in range(len(liveRes["data"]["users"])):
-            if liveRes["data"]["users"][i]["stream"] == None:
-                del liveRes["data"]["users"][i]
-
+        liveStreams = []
+        for user in liveRes["data"]["users"]:
+            if user["stream"] != None:
+                liveStreams.append(user)
+        liveRes["data"]["users"] = liveStreams
         TICKETCOUNT += 1
         if TICKETCOUNT % 60 == 0:
             for streamer in STREAMERS:
