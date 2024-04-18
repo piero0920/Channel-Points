@@ -1,0 +1,12 @@
+version: '3'
+services:
+  python:
+    container_name: channel_points
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
